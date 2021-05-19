@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="{{ url_for('static', filename='jspsych/jspsych.js') }}" type="text/javascript"></script>
+    <script src="jsPsych/jspysch.js" type="text/javascript"></script>
+    <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <link href="jsPsych/css/jspsych.css" rel="stylesheet" type="text/css">
+   <!--- <script src="{{ url_for('static', filename='jspsych/jspsych.js') }}" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='jspsych/examples/js/webgazer/webgazer.js') }}" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='jspsych/extensions/jspsych-ext-webgazer.js') }}" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='jspsych/plugins/jspsych-webgazer-init-camera.js') }}" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='jspsych/plugins/jspsych-webgazer-calibrate.js') }}" type="text/javascript"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='jspsych/css/jspsych.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='jspsych/css/jspsych.css') }}"> -->
 </head>
 <body>
-    <script>
+    <!--<script>
+        
         var init_camera = {
             type: 'webgazer-init-camera'
         }
@@ -21,6 +25,16 @@
         jsPysch.init({
             timeline: [init_camera,calibration_trial],
             extensions: [{type: 'webgazer'}] 
+        }) 
+    </script>-->
+    <script>
+        var hello_trial = {
+            type: 'html-keyboard-response',
+            stimulus: 'Hello world!'
+        }
+
+        jsPsych.init({
+            timeline: [hello_trial]
         })
     </script>
 </body>
