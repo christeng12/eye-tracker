@@ -3,7 +3,14 @@
     <head>
         <title>My experiment</title>
         <script src="{{ url_for('static', filename='js/jspsych.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/plugins/jspsych-preload.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/plugins/jspsych-image-keyboard-response.js') }}"></script>
         <script src="{{ url_for('static', filename='js/plugins/jspsych-html-keyboard-response.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/plugins/jspsych-webgazer-init-camera.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/plugins/jspsych-webgazer-calibrate.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/plugins/jspsych-webgazer-validate.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/examples/js/webgazer/webgazer.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/extensions/jspsych-ext-webgazer.js') }}"></script>
         <link href="{{ url_for('static', filename='js/css/jspsych.css') }}" rel="stylesheet" type="text/css">
     </head>
     <body></body>
@@ -14,8 +21,19 @@
         stimulus: 'Hello world!'
     }
 
+    var init_camera_trial = {
+        type: 'webgazer-init-camera'
+    }
+
+    var calibration_trial = {
+        type: 'webgazer-calibrate',
+        calibration_points: [[25,50], [50,50], [75,50], [50,25], [50,75]],
+        calibration_mode: 'click'
+    }
+
     jsPsych.init({
-        timeline: [hello_trial]
+        timeline: [hello_trial, init_camera_trial, calibration_trial],
+        extensions: [ {type: 'webgazer'} ]
     })
 
     </script>
