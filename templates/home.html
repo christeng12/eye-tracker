@@ -17,6 +17,17 @@
     <body></body>
     <script>
 
+    var instruction = {
+        type: 'html-keyboard-response',
+        stimulus: `
+            <p>In this experiment, you will first need calibrate the eyetracking software</p>
+            <p>To do this, multiple dots will appear at fixed points on the screen. Follow them with your eyes and once you've
+                fixated, click the dot with you mouse</p>
+            <p>Two dots may appear at the same place back to back</p>
+            <b>Press any key to begin</b>
+        `,
+    }
+
     var init_camera_trial = {
         type: 'webgazer-init-camera'
     }
@@ -27,6 +38,14 @@
         repetitions_per_point: 2,
         randomize_calibration_order: true,
         calibration_mode: 'click'
+    }
+
+    var intermission = {
+        type: 'html-keyboard-response',
+        stimulus: `
+            <p>You have finished calibration. A set of 4 points will appear. Follow them with you eyes. There is no need to click</p>
+            <b>Press any key to begin</b>
+        `,
     }
 
     var validation_trial = {
@@ -56,7 +75,7 @@
     }
 
     jsPsych.init({
-        timeline: [init_camera_trial, calibration_trial, validation_trial, test],
+        timeline: [instruction, init_camera_trial, calibration_trial, intermission, validation_trial, test],
         extensions: [ {type: 'webgazer'} ]
     })
 
