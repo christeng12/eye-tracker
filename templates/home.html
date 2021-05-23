@@ -24,7 +24,7 @@
     var calibration_trial = {
         type: 'webgazer-calibrate',
         calibration_points: [[25,50], [50,50], [75,50], [50,25], [50,75]],
-        repititions_per_point: 3,
+        repetitions_per_point: 2,
         randomize_calibration_order: true,
         calibration_mode: 'click'
     }
@@ -38,20 +38,25 @@
 
     var trial = {
         type: 'html-button-response',
-        stimulus: '<img src="{{ url_for("static", filename="img/redblue.png") }}"></img>',
+        stimulus: '<img src="{{ url_for("static", filename="img/redblue.svg") }}"></img>',
         prompt: "<p>look at one of the colored squares, then indicate which square you were looking at</p>",
         choices: ['red','blue'],
         trial_duration: 3000,
         extensions: [
             {
             type: 'webgazer', 
-            params: {targets: ['#jspsych-image-keyboard-response-stimulus']}
+            params: {targets: ['#jspsych-html-button-response-stimulus']}
             }
-        ]
+        ],
+    }
+
+    var test = {
+        timeline: [trial],
+        repetitions: 5
     }
 
     jsPsych.init({
-        timeline: [init_camera_trial, calibration_trial, validation_trial, trial],
+        timeline: [init_camera_trial, calibration_trial, validation_trial, test],
         extensions: [ {type: 'webgazer'} ]
     })
 
