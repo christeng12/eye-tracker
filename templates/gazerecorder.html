@@ -22,11 +22,8 @@
             document.getElementById("start").style.display="none";
             if(GazeCloudAPI.OnCalibrationComplete != null){
                 document.getElementById("stop").style.display="block";
-                GazeCloudAPI.StartEyeTracking();
-            } else {
-                GazeCloudAPI.RestartEyeTracking();
             }
-
+            GazeCloudAPI.StartEyeTracking();
         }
         function stop() {
             document.getElementById("start").style.display="block";
